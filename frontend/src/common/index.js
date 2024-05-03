@@ -1,4 +1,4 @@
-const backendDomin = "http://localhost:7000"
+const backendDomin = "https://ecommerce-mern-backend-inky.vercel.app"
 
 const SummaryApi = {
     signUP : {
