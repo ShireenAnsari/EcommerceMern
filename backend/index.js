@@ -7,15 +7,15 @@ const router = require('./routes')
 
 
 const app = express()
-// app.use(cors({
-//     origin : process.env.FRONTEND_URL,
-//     credentials : true
-// }))
-const corsConfig = {
-    origin: true,
-    credentials: true,
-  };
-app.use(cors(corsConfig));
+app.use(cors({
+    origin : process.env.FRONTEND_URL,
+    credentials : true
+}))
+// const corsConfig = {
+//     origin: true,
+//     credentials: true,
+//   };
+// app.use(cors(corsConfig));
 app.options('*', cors(corsConfig))
 app.use(express.json())
 app.use(cookieParser())
