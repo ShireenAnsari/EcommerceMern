@@ -28,7 +28,6 @@ const Header = () => {
     })
 
     const data = await fetchData.json()
-
     if(data.success){
       toast.success(data.message)
       dispatch(setUserDetails(null))
@@ -119,6 +118,7 @@ const Header = () => {
 
 
                 <div>
+                {console.log('user is ',user)}
                   {
                     user?._id  ? (
                       <button onClick={handleLogout} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Logout</button>

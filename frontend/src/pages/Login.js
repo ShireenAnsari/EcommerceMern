@@ -41,7 +41,7 @@ const Login = () => {
         })
 
         const dataApi = await dataResponse.json()
-
+      console.log(dataApi);
         if(dataApi.success){
             toast.success(dataApi.message)
             navigate('/')
