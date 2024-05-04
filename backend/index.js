@@ -1,33 +1,30 @@
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
-const connectDB = require('./config/db')
-const router = require('./routes')
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+const connectDB = require('./config/db');
+const router = require('./routes');
 
+const app = express();
 
-const app = express()
-app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
-// const corsConfig = {
-//     origin: true,
-//     credentials: true,
-//   };
-// app.use(cors(corsConfig));
-// app.options('*', cors(corsConfig))
-app.use(express.json())
-app.use(cookieParser())
+const corsConfig = {
+    origin: ['http://localhost:3000', 'http://localhost:7000', 'https://ecommerce-mern-backend-inky.vercel.app'],
+    credentials: true,
+};
 
-app.use("/api",router)
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig));
 
-const PORT = 7000 || process.env.PORT
+app.use(express.json());
+app.use(cookieParser());
 
+app.use("/api", router);
 
-connectDB().then(()=>{
-    app.listen(PORT,()=>{
-        console.log("connnect to DB")
-        console.log("Server is running "+PORT)
-    })
-})
+const PORT = process.env.PORT || 7000;
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("Connected to DB");
+        console.log("Server is running on port " + PORT);
+    });
+});
